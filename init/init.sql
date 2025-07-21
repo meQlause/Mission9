@@ -1,6 +1,5 @@
 -- ENUM must come first
 CREATE TYPE OrderStatus AS ENUM ('berhasil', 'gagal', 'pending');
-
 -- referenced early
 CREATE TABLE kategori_kelas (
   id SERIAL PRIMARY KEY,
@@ -73,16 +72,18 @@ CREATE TABLE pretest (
   quiz JSON
 );
 
--- references produk
+-- references produk & users
 CREATE TABLE review (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   produk_id INTEGER NOT NULL REFERENCES produk(id) ON DELETE CASCADE,
-  nama TEXT,
-  profile TEXT,
   review TEXT,
   rating INTEGER,
   created_at DATE DEFAULT CURRENT_DATE
 );
+
+CREATE UNIQUE INDEX user_produk_review_unique ON review(user_id, produk_id);
+
 
 -- references produk
 CREATE TABLE modul_kelas (
