@@ -69,7 +69,7 @@ CREATE TABLE orders (
 -- references produk
 CREATE TABLE pretest (
   id INTEGER PRIMARY KEY,
-  produk_id INTEGER NOT NULL REFERENCES produk(id) ON DELETE CASCADE,
+  produk_id INTEGER NOT NULL UNIQUE REFERENCES produk(id) ON DELETE CASCADE,
   quiz JSON
 );
 
