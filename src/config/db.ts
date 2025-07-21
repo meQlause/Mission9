@@ -1,7 +1,7 @@
 import { Pool } from 'pg';
 
 const pool = new Pool({
-    host: 'db',
+    host: 'localhost',
     user: 'admin',
     password: 'admin',
     database: 'educourse',
